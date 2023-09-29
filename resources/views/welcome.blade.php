@@ -830,11 +830,11 @@
     </style>
 </head>
 
-<body class="antialiased">
+<body class="antialiased dark:bg-gray-900">
     <div class="relative flex justify-left bg-dots-darker bg-center bg-gray-100 dark:bg-gray-900">
         <img src="{{ URL::to("/images/site/logotype/{$logo}") }}" alt="Logo" width="350" height="250">
     </div>
-    <div class="relative sm:flex sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+    <div class="min-h-50 bg-dots-darker bg-center bg-gray-100 dark:bg-gray-900 selection:bg-red-500 selection:text-white">
         @if (Route::has('login'))
         <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
             @auth
@@ -845,7 +845,24 @@
         </div>
         @endif
     </div>
+    <div class="flex justify-center" style="margin-top: 100px; margin-bottom: 10px;">
+        <h2 style="font-size: 25px;" class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">{{$content->titulo}}</h2>
+    </div>
+    <div class="flex justify-center">
+        <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">{{$content->descricao}}</p>
+    </div>
 
+    <div class="flex justify-center" style="margin-top: 100px; margin-bottom: 100px;">
+        @if (!empty($links))
+        @foreach ($links as $link)
+        <a style="background-color: rgb(255 200 102); border-radius: 0.125rem; margin-left: 10px; margin-left: 10px;" href="{{$link['link']}}" target="_blank">{{$link['name']}}</a>
+        @endforeach
+        @else
+        <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+            Nenhum Link cadastrado
+        </p>
+        @endif
+    </div>
 </body>
 
 </html>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Site\LinksExternosController;
 use App\Http\Controllers\Site\SiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +37,19 @@ Route::middleware('auth')->group(function () {
         Route::group(['prefix' => '/header'], function () {
             Route::get('/logo', [SiteController::class, 'logo'])->name('site.logo');
             Route::put('/update-logo', [SiteController::class, 'updateLogo'])->name('site.updateLogo');
+        });
+        Route::group(['prefix' => '/content'], function () {
+            Route::get('/', [SiteController::class, 'mainContent'])->name('site.content');
+            Route::put('/update-main-content', [SiteController::class, 'updateMainContent'])->name('site.updateMainContent');
+        });
+        Route::group(['prefix' => '/links-externos'], function () {
+            Route::delete('/delete/{id}', [LinksExternosController::class, 'delete'])->name('site.DeleteLink');
+            Route::get('/', [LinksExternosController::class, 'index'])->name('site.linksExternos');
+            Route::get('/novo', [LinksExternosController::class, 'create'])->name('site.createLink');
+            Route::post('/', [LinksExternosController::class, 'store'])->name('site.StoreLink');
+            Route::get('/show/{id}', [LinksExternosController::class, 'show'])->name('site.ShowLink');
+            Route::get('/edit/{id}', [LinksExternosController::class, 'edit'])->name('site.EditLink');
+            Route::put('/', [LinksExternosController::class, 'update'])->name('site.UpdateLink');
         });
     });
 });

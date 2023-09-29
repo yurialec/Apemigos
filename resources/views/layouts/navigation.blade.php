@@ -38,17 +38,11 @@
                             <x-dropdown-link :href="route('site.logo')">
                                 Logotipo
                             </x-dropdown-link>
-                            <p class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight" style="margin-left: 10px;">
+                            <x-dropdown-link :href="route('site.content')">
                                 Conteúdo do Principal
-                            </p>
-                            <x-dropdown-link :href="route('profile.edit')">
-                                titulo
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('profile.edit')">
-                                descricao
-                            </x-dropdown-link>
-                            <x-dropdown-link :href="route('profile.edit')">
-                                links externos
+                            <x-dropdown-link :href="route('site.linksExternos')">
+                                Links Externos
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('profile.edit')">
                                 Carrousel: titulo, descricao, imagem, links externos
