@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Site\UpdateMainContentRequest;
 use App\Http\Requests\Site\UpdateSiteLogoRequest;
+use App\Models\Site\Carousel;
 use App\Models\Site\ExternalLinks;
 use App\Models\Site\MainContent;
 use App\Models\Site\SiteHead;
@@ -24,9 +25,13 @@ class SiteController extends Controller
         /** Título e descricao da pagina*/
         $content = MainContent::first();
 
+        /** Links Externos*/
         $links = ExternalLinks::all()->toArray();
 
-        return view('welcome', compact('logo', 'content', 'links'));
+        /** Carousel de imagens*/
+        $carousels = Carousel::all()->toArray();
+
+        return view('welcome', compact('logo', 'content', 'links', 'carousels'));
     }
 
     /**

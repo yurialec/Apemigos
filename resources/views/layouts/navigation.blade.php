@@ -44,8 +44,8 @@
                             <x-dropdown-link :href="route('site.linksExternos')">
                                 Links Externos
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('profile.edit')">
-                                Carrousel: titulo, descricao, imagem, links externos
+                            <x-dropdown-link :href="route('site.Carousel')">
+                                Carousel
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('profile.edit')">
                                 Newsletter: A definir

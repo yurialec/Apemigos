@@ -831,7 +831,7 @@
 </head>
 
 <body class="antialiased dark:bg-gray-900">
-    <div class="relative flex justify-left bg-dots-darker bg-center bg-gray-100 dark:bg-gray-900">
+    <div style="margin-left: 25px; margin-top: 25px;" class="relative flex justify-left bg-dots-darker bg-center bg-gray-100 dark:bg-gray-900">
         <img src="{{ URL::to("/images/site/logotype/{$logo}") }}" alt="Logo" width="350" height="250">
     </div>
     <div class="min-h-50 bg-dots-darker bg-center bg-gray-100 dark:bg-gray-900 selection:bg-red-500 selection:text-white">
@@ -852,6 +852,7 @@
         <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">{{$content->descricao}}</p>
     </div>
 
+    <!-- Links Externos -->
     <div class="flex justify-center" style="margin-top: 100px; margin-bottom: 100px;">
         @if (!empty($links))
         @foreach ($links as $link)
@@ -860,6 +861,19 @@
         @else
         <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
             Nenhum Link cadastrado
+        </p>
+        @endif
+    </div>
+
+    <!-- Carousel -->
+    <div class="flex justify-center" style="margin-top: 100px; margin-bottom: 100px;">
+        @if (!empty($carousels))
+        @foreach ($carousels as $carousel)
+        {{$carousel['id']}}
+        @endforeach
+        @else
+        <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+            Nenhum carousel cadastrado
         </p>
         @endif
     </div>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Site\CarouselController;
 use App\Http\Controllers\Site\LinksExternosController;
 use App\Http\Controllers\Site\SiteController;
 use Illuminate\Support\Facades\Route;
@@ -50,6 +51,16 @@ Route::middleware('auth')->group(function () {
             Route::get('/show/{id}', [LinksExternosController::class, 'show'])->name('site.ShowLink');
             Route::get('/edit/{id}', [LinksExternosController::class, 'edit'])->name('site.EditLink');
             Route::put('/', [LinksExternosController::class, 'update'])->name('site.UpdateLink');
+        });
+
+        Route::group(['prefix' => '/carousel'], function () {
+            Route::delete('/delete/{id}', [CarouselController::class, 'delete'])->name('site.DeleteCarousel');
+            Route::get('/', [CarouselController::class, 'index'])->name('site.Carousel');
+            Route::get('/novo', [CarouselController::class, 'create'])->name('site.CreateCarousel');
+            Route::post('/novo', [CarouselController::class, 'store'])->name('site.StoreCarousel');
+            Route::get('/show/{id}', [CarouselController::class, 'show'])->name('site.ShowCarousel');
+            Route::get('/edit/{id}', [CarouselController::class, 'edit'])->name('site.EditCarousel');
+            Route::put('/', [CarouselController::class, 'update'])->name('site.UpdateCarousel');
         });
     });
 });
