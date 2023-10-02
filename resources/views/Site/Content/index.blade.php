@@ -19,15 +19,15 @@
                 @csrf
                 @method('PUT')
                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Título</label>
-                <input type="text" class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" name="titulo" value="{{$mainContent[0]->titulo}}" />
+                <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="titulo" value="{{$mainContent[0]->titulo}}" />
 
                 <div style="margin-top: 10px;">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Descrição</label>
-                    <textarea class="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" name="descricao" rows="3">{{$mainContent[0]->descricao}}</textarea>
+                    <textarea class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="descricao" rows="3">{{$mainContent[0]->descricao}}</textarea>
                 </div>
-                <button style="margin-top: 25px;" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-10 px-4 border border-gray-400 rounded shadow" type="submit" value="UpdateMainContent">
+                <x-primary-button style="margin-top: 10px;">
                     Atualizar
-                </button>
+                </x-primary-button>
             </form>
         </div>
     </div>

@@ -20,9 +20,9 @@
                 @method('PUT')
                 <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Selecione a Imagem</label>
                 <input class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" name="logotipo" id="file_input" type="file">
-                <button style="margin-top: 25px;" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold py-10 px-4 border border-gray-400 rounded shadow" type="submit" value="UpdateLogoImage">
+                <x-primary-button style="margin-top: 10px;">
                     Atualizar
-                </button>
+                </x-primary-button>
             </form>
         </div>
     </div>

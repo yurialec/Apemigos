@@ -831,9 +831,18 @@
 </head>
 
 <body class="antialiased dark:bg-gray-900">
+    <!-- Logotipo -->
     <div style="margin-left: 25px; margin-top: 25px;" class="relative flex justify-left bg-dots-darker bg-center bg-gray-100 dark:bg-gray-900">
+        @if (!empty($logo))
         <img src="{{ URL::to("/images/site/logotype/{$logo}") }}" alt="Logo" width="350" height="250">
+        @else
+        <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+            Nenhum logotipo cadastrado
+        </p>
+        @endif
     </div>
+
+    <!-- Login/Area restrita -->
     <div class="min-h-50 bg-dots-darker bg-center bg-gray-100 dark:bg-gray-900 selection:bg-red-500 selection:text-white">
         @if (Route::has('login'))
         <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
@@ -845,12 +854,20 @@
         </div>
         @endif
     </div>
+
+    <!-- Titulo -->
+    @if (!empty($content))
     <div class="flex justify-center" style="margin-top: 100px; margin-bottom: 10px;">
         <h2 style="font-size: 25px;" class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">{{$content->titulo}}</h2>
     </div>
     <div class="flex justify-center">
         <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">{{$content->descricao}}</p>
     </div>
+    @else
+    <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+        Nenhum título cadastrado
+    </p>
+    @endif
 
     <!-- Links Externos -->
     <div class="flex justify-center" style="margin-top: 100px; margin-bottom: 100px;">
@@ -866,11 +883,39 @@
     </div>
 
     <!-- Carousel -->
-    <div class="flex justify-center" style="margin-top: 100px; margin-bottom: 100px;">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <div class="flex justify-center" style="margin-top: 100px; margin-bottom: 100px; margin-left: 100px; margin-right: 100px;">
         @if (!empty($carousels))
-        @foreach ($carousels as $carousel)
-        {{$carousel['id']}}
-        @endforeach
+        <div class="mt-6 mx-60 swiper mySwiper">
+            <div class="swiper-wrapper">
+                @foreach ($carousels as $carousel)
+                <div class="swiper-slide">
+                    <div>
+                        <div>
+                            <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                                {{ $carousel->titulo }}
+                            </p>
+                        </div>
+                        <div>
+                            <img src="{{ URL::to("/carousel/{$carousel->imagem}") }}" alt="{{ $carousel->titulo }}" width="250px">
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                                {{ $carousel->descricao }}
+                            </p>
+                        </div>
+                        <div>
+                            <a style="background-color: rgb(255 200 102); border-radius: 0.125rem; margin-left: 10px; margin-left: 10px;" href="{{$carousel->url_link_externo}}" target="_blank">{{$carousel->nome_link_externo}}</a>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
         @else
         <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
             Nenhum carousel cadastrado
@@ -878,5 +923,21 @@
         @endif
     </div>
 </body>
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        cssMode: true,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+        },
+        mousewheel: true,
+        keyboard: true,
+    });
+</script>
 
 </html>

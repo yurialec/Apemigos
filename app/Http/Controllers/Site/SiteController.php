@@ -21,7 +21,7 @@ class SiteController extends Controller
         /** Carregar Logotipo*/
         $logotipo = new SiteHead;
         $logo = $logotipo->first()->logotipo;
-
+    
         /** Título e descricao da pagina*/
         $content = MainContent::first();
 
@@ -29,8 +29,8 @@ class SiteController extends Controller
         $links = ExternalLinks::all()->toArray();
 
         /** Carousel de imagens*/
-        $carousels = Carousel::all()->toArray();
-
+        $carousels = Carousel::all();
+        
         return view('welcome', compact('logo', 'content', 'links', 'carousels'));
     }
 
