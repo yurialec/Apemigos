@@ -9,6 +9,7 @@ use App\Models\Site\Carousel;
 use App\Models\Site\ExternalLinks;
 use App\Models\Site\Footer;
 use App\Models\Site\MainContent;
+use App\Models\Site\MidiasSociais;
 use App\Models\Site\SiteHead;
 use Illuminate\Support\Facades\File;
 
@@ -35,7 +36,10 @@ class SiteController extends Controller
         /** Dados do Rodape */
         $footer = Footer::first();
 
-        return view('welcome', compact('logo', 'content', 'links', 'carousels', 'footer'));
+        /** Redes Sociais */
+        $redesSociais = MidiasSociais::all();
+
+        return view('welcome', compact('logo', 'content', 'links', 'carousels', 'footer', 'redesSociais'));
     }
 
     /**

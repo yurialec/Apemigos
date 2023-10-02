@@ -1,3 +1,7 @@
+<!-- Login/Area restrita -->
+@if (Route::has('login'))
+
+@auth
 <nav x-data="{ open: false }" class="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -55,6 +59,9 @@
                             </p>
                             <x-dropdown-link :href="route('site.indexFooter')">
                                 Sobre, info, endereço, contato
+                            </x-dropdown-link>
+                            <x-dropdown-link :href="route('site.MidiasSociais')">
+                                Mídias Sociais
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>
@@ -124,7 +131,7 @@
                             @csrf
 
                             <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
-                                                this.closest('form').submit();">
+                                                        this.closest('form').submit();">
                                 {{ __('Sair') }}
                             </x-dropdown-link>
                         </form>
@@ -169,7 +176,7 @@
                     @csrf
 
                     <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
-                                        this.closest('form').submit();">
+                                                this.closest('form').submit();">
                         {{ __('Sair') }}
                     </x-responsive-nav-link>
                 </form>
@@ -177,3 +184,9 @@
         </div>
     </div>
 </nav>
+@else
+<div style="margin-right: 45px;" class="text-right">
+    <a href="{{ route('login') }}" class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Login</a>
+</div>
+@endauth
+@endif

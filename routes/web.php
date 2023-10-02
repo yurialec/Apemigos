@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Site\CarouselController;
 use App\Http\Controllers\Site\FooterController;
 use App\Http\Controllers\Site\LinksExternosController;
+use App\Http\Controllers\Site\MidiasSociaisController;
 use App\Http\Controllers\Site\SiteController;
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +71,16 @@ Route::middleware('auth')->group(function () {
             Route::post('/store', [FooterController::class, 'store'])->name('site.StoreFooter');
             Route::get('/edit/{id}', [FooterController::class, 'edit'])->name('site.EditFooter');
             Route::put('/update', [FooterController::class, 'update'])->name('site.UpdateFooter');
+        });
+
+        Route::group(['prefix' => '/midias-sociais'], function () {
+            Route::get('/', [MidiasSociaisController::class, 'index'])->name('site.MidiasSociais');
+            Route::get('/create', [MidiasSociaisController::class, 'create'])->name('site.CreateMidiasSociais');
+            Route::post('/store', [MidiasSociaisController::class, 'store'])->name('site.StoreMidiasSociais');
+            Route::get('/{id}', [MidiasSociaisController::class, 'show'])->name('site.ShowMidiasSociais');
+            Route::get('/edit/{id}', [MidiasSociaisController::class, 'edit'])->name('site.EditMidiasSociais');
+            Route::put('/update', [MidiasSociaisController::class, 'update'])->name('site.UpdateMidiasSociais');
+            Route::delete('/delete/{id}', [MidiasSociaisController::class, 'delete'])->name('site.DeleteMidiasSociais');
         });
     });
 });
