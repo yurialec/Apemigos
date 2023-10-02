@@ -50,8 +50,11 @@
                             <x-dropdown-link :href="route('profile.edit')">
                                 Newsletter: A definir
                             </x-dropdown-link>
-                            <x-dropdown-link :href="route('profile.edit')">
-                                Rodapé: Sobre, info, endereço, contato, follow(redes sociais, links externos)
+                            <p class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight" style="margin-left: 10px;">
+                                Rodapé
+                            </p>
+                            <x-dropdown-link :href="route('site.indexFooter')">
+                                Sobre, info, endereço, contato
                             </x-dropdown-link>
                         </x-slot>
                     </x-dropdown>

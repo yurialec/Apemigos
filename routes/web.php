@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Site\CarouselController;
+use App\Http\Controllers\Site\FooterController;
 use App\Http\Controllers\Site\LinksExternosController;
 use App\Http\Controllers\Site\SiteController;
 use Illuminate\Support\Facades\Route;
@@ -61,6 +62,14 @@ Route::middleware('auth')->group(function () {
             Route::get('/show/{id}', [CarouselController::class, 'show'])->name('site.ShowCarousel');
             Route::get('/edit/{id}', [CarouselController::class, 'edit'])->name('site.EditCarousel');
             Route::put('/', [CarouselController::class, 'update'])->name('site.UpdateCarousel');
+        });
+
+        Route::group(['prefix' => '/footer'], function () {
+            Route::get('/', [FooterController::class, 'index'])->name('site.indexFooter');
+            Route::get('/create', [FooterController::class, 'create'])->name('site.CreateFooter');
+            Route::post('/store', [FooterController::class, 'store'])->name('site.StoreFooter');
+            Route::get('/edit/{id}', [FooterController::class, 'edit'])->name('site.EditFooter');
+            Route::put('/update', [FooterController::class, 'update'])->name('site.UpdateFooter');
         });
     });
 });

@@ -7,6 +7,7 @@ use App\Http\Requests\Site\UpdateMainContentRequest;
 use App\Http\Requests\Site\UpdateSiteLogoRequest;
 use App\Models\Site\Carousel;
 use App\Models\Site\ExternalLinks;
+use App\Models\Site\Footer;
 use App\Models\Site\MainContent;
 use App\Models\Site\SiteHead;
 use Illuminate\Support\Facades\File;
@@ -21,7 +22,7 @@ class SiteController extends Controller
         /** Carregar Logotipo*/
         $logotipo = new SiteHead;
         $logo = $logotipo->first()->logotipo;
-    
+
         /** Título e descricao da pagina*/
         $content = MainContent::first();
 
@@ -30,8 +31,11 @@ class SiteController extends Controller
 
         /** Carousel de imagens*/
         $carousels = Carousel::all();
-        
-        return view('welcome', compact('logo', 'content', 'links', 'carousels'));
+
+        /** Dados do Rodape */
+        $footer = Footer::first();
+
+        return view('welcome', compact('logo', 'content', 'links', 'carousels', 'footer'));
     }
 
     /**
