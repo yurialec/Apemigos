@@ -1,6 +1,9 @@
 <?php
 
-use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Adm\AdmController;
+use App\Http\Controllers\Adm\PermissionController;
+use App\Http\Controllers\Adm\RoleController;
+use App\Http\Controllers\Adm\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Site\CarouselController;
 use App\Http\Controllers\Site\FooterController;
@@ -31,9 +34,38 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::group(['prefix' => '/adm'], function () {
+        Route::get('/', [AdmController::class, 'index'])->name('adm.index');
 
-    Route::group(['prefix' => '/admin'], function () {
-        Route::get('/usuarios', [UserController::class, 'index'])->name('users.index');
+        Route::group(['prefix' => '/roles'], function () {
+            Route::get('/', [RoleController::class, 'index'])->name('adm.IndexRole');
+            Route::get('/create', [RoleController::class, 'create'])->name('adm.CreateRole');
+            Route::post('/', [RoleController::class, 'store'])->name('adm.StoreRole');
+            Route::get('/show/{id}', [RoleController::class, 'show'])->name('adm.ShowRole');
+            Route::get('/edit/{id}', [RoleController::class, 'edit'])->name('adm.EditRole');
+            Route::put('/', [RoleController::class, 'update'])->name('adm.EupdateRole');
+            Route::delete('/delete/{id}', [RoleController::class, 'delete'])->name('adm.DeleteRole');
+        });
+
+        Route::group(['prefix' => '/permissions'], function () {
+            Route::get('/', [PermissionController::class, 'index'])->name('adm.IndexPermission');
+            Route::get('/create', [PermissionController::class, 'create'])->name('adm.CreatePermission');
+            Route::post('/', [PermissionController::class, 'store'])->name('adm.StorePermission');
+            Route::get('/show/{id}', [PermissionController::class, 'show'])->name('adm.ShowPermission');
+            Route::get('/edit/{id}', [PermissionController::class, 'edit'])->name('adm.EditPermission');
+            Route::put('/', [PermissionController::class, 'update'])->name('adm.UpdatePermission');
+            Route::delete('/delete/{id}', [PermissionController::class, 'delete'])->name('adm.DeletePermission');
+        });
+
+        Route::group(['prefix' => '/users'], function () {
+            Route::get('/', [UserController::class, 'index'])->name('adm.IndexUser');
+            Route::get('/create', [UserController::class, 'create'])->name('adm.CreateUser');
+            Route::post('/', [UserController::class, 'store'])->name('adm.StoreUser');
+            Route::get('/show/{id}', [UserController::class, 'show'])->name('adm.ShowUser');
+            Route::get('/edit/{id}', [UserController::class, 'edit'])->name('adm.EditUser');
+            Route::put('/', [UserController::class, 'update'])->name('adm.UpdateUser');
+            Route::delete('/delete/{id}', [UserController::class, 'delete'])->name('adm.DeleteUser');
+        });
     });
 
     Route::group(['prefix' => '/site-config'], function () {

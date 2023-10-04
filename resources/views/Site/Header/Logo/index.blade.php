@@ -14,6 +14,7 @@
                 Logotipo Página inicial
             </p>
         </div>
+        
         <div>
             <form method="POST" action="{{route('site.updateLogo')}}" enctype="multipart/form-data">
                 @csrf

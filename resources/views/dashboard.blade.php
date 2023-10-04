@@ -19,5 +19,4 @@
             </div>
         </div>
     </div> -->
-    <!-- <a href="{{route('users.index')}}">Usuários</a> -->
 </x-app-layout>
