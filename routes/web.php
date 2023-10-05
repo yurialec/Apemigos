@@ -45,6 +45,10 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit/{id}', [RoleController::class, 'edit'])->name('adm.EditRole');
             Route::put('/', [RoleController::class, 'update'])->name('adm.EupdateRole');
             Route::delete('/delete/{id}', [RoleController::class, 'delete'])->name('adm.DeleteRole');
+            
+            Route::group(['prefix' => '/permissions'], function () {
+                Route::get('/', [RoleController::class, 'index'])->name('adm.IndexRole');
+            });
         });
 
         Route::group(['prefix' => '/permissions'], function () {

@@ -59,6 +59,7 @@
                                 {{$role->description}}
                             </td>
                             <td class="px-6 py-4">
+                                <a class="dark:hover:text-white" href="">Permissões</a>
                                 <a class="dark:hover:text-white" href="{{route('adm.ShowRole', $role->id)}}">Visualizar</a>
                                 <a class="dark:hover:text-white" href="{{route('adm.EditRole', $role->id)}}">Editar</a>
                                 <form action="{{route('adm.DeleteRole', $role->id)}}" method="POST">

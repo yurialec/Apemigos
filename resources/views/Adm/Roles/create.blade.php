@@ -12,7 +12,7 @@
     <div class="flex flex-col justify-center items-center">
         <div style="margin-top: 40px; margin-bottom: 25px;">
             <p class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight" style="margin-left: 10px;">
-                Dados do Papel
+                Dados do Nível de Acesso
             </p>
         </div>
         <div style="width: 600px;" class="block max-w-md rounded-lg p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">

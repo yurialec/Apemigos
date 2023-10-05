@@ -38,6 +38,9 @@
                                 Nome
                             </th>
                             <th scope="col" class="px-6 py-3">
+                                E-mail
+                            </th>
+                            <th scope="col" class="px-6 py-3">
                                 Ações
                             </th>
                         </tr>
@@ -51,6 +54,9 @@
                             </td>
                             <th scope="row" class="px-6 py-4">
                                 {{$user->name}}
+                            </th>
+                            <th scope="row" class="px-6 py-4">
+                                {{$user->email}}
                             </th>
                             <td class="px-6 py-4">
                                 <a class="dark:hover:text-white" href="{{route('adm.ShowUser', $user->id)}}">Visualizar</a>

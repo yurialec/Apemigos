@@ -16,10 +16,10 @@
     <div class="flex flex-col justify-center items-center">
         <div style="margin-top: 40px; margin-bottom: 25px;">
             <h1 class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight">
-                Detalhes do Papel
+                Detalhes do Nível de Acesso
             </h1>
-            <p class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight">{{$role->name}}</p>
-            <p class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight">{{$role->description}}</p>
+            <p class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight">Nome: {{$role->name}}</p>
+            <p class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight">Descrição: {{$role->description}}</p>
         </div>
     </div>
 </x-app-layout>

@@ -2,8 +2,10 @@
 
 namespace App\Models\Adm;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Roles extends Model
 {
@@ -14,6 +16,11 @@ class Roles extends Model
 
     protected $fillable = [
         'name',
-        'description'
+        'description',
     ];
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

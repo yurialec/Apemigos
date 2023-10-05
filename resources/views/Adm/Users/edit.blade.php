@@ -12,7 +12,7 @@
     <div class="flex flex-col justify-center items-center">
         <div style="margin-top: 40px; margin-bottom: 25px;">
             <p class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight" style="margin-left: 10px;">
-                Dados do Papel
+                Dados do Usuário
             </p>
         </div>
         <div style="width: 600px;" class="block max-w-md rounded-lg p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
@@ -20,15 +20,29 @@
                 @csrf
                 @method('PUT')
                 <input type="hidden" name="id" value="{{$user->id}}" />
+
                 <div style="margin-top: 10px;">
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Nome</label>
-                    <input type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="name" value="{{$user->name ?? old('name')}}" />
+                    <x-input-label for="name" :value="__('Nome')" />
+                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" autocomplete="name" value="{{$user->name ?? old('name')}}" />
                 </div>
 
                 <div style="margin-top: 10px;">
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">E-mail</label>
-                    <input type="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" name="email" value="{{$user->email ?? old('email')}}" />
+                    <x-input-label for="email" :value="__('Email')" />
+                    <x-text-input id="email" name="email" type="email" class="mt-1 block w-full" autocomplete="name" value="{{$user->email ?? old('email')}}" />
                 </div>
+
+                <div style="margin-top: 10px;">
+                    <x-input-label for="role" :value="__('Nivel de Acesso')" />
+                    <select id="gender" name="role" class="block mt-1 w-full" wire:model="gender">
+                        <option value="" disabled>Selecione um nível</option>
+                        @foreach ($roles as $role)
+                        <option value="{{$role->id}}">
+                            {{$role->description}}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+
                 <button style="margin-top: 25px;" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold px-4 border border-gray-400 rounded shadow" type="submit">
                     Atualizar
                 </button>
