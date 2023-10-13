@@ -3,6 +3,7 @@
 use App\Http\Controllers\Adm\AdmController;
 use App\Http\Controllers\Adm\PermissionController;
 use App\Http\Controllers\Adm\RoleController;
+use App\Http\Controllers\Adm\RolePermissionController;
 use App\Http\Controllers\Adm\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Site\CarouselController;
@@ -45,9 +46,10 @@ Route::middleware('auth')->group(function () {
             Route::get('/edit/{id}', [RoleController::class, 'edit'])->name('adm.EditRole');
             Route::put('/', [RoleController::class, 'update'])->name('adm.EupdateRole');
             Route::delete('/delete/{id}', [RoleController::class, 'delete'])->name('adm.DeleteRole');
-            
-            Route::group(['prefix' => '/permissions'], function () {
-                Route::get('/', [RoleController::class, 'index'])->name('adm.IndexRole');
+
+            Route::group(['prefix' => '/role-permissions'], function () {
+                Route::get('/{roleId}', [RolePermissionController::class, 'index'])->name('adm.IndexRolePermissions');
+                Route::put('/', [RolePermissionController::class, 'updateRolePermisison'])->name('adm.updateRolePermisison');
             });
         });
 

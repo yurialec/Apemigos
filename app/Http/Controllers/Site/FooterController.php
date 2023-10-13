@@ -11,8 +11,7 @@ class FooterController extends Controller
 {
     public function index()
     {
-        $result = new Footer();
-        $footer = $result->first()->toArray();
+        $footer = Footer::first();
 
         return view('Site.Footer.index', compact('footer'));
     }

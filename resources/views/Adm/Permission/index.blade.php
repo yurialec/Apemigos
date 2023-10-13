@@ -71,7 +71,11 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $permissions->links() }}
+                <div class="flex flex-col justify-center items-center">
+                    <p style="margin-top: 25px;" class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight" style="margin-left: 10px;">
+                        {{ $permissions->links() }}
+                    </p>
+                </div>
             </div>
             @endif
         </main>
