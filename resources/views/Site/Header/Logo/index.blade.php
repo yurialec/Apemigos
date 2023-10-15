@@ -14,7 +14,9 @@
                 Logotipo Página inicial
             </p>
         </div>
-        
+        @can('update_logotipo')
+
+        @endcan
         <div>
             <form method="POST" action="{{route('site.updateLogo')}}" enctype="multipart/form-data">
                 @csrf
@@ -26,5 +28,6 @@
                 </x-primary-button>
             </form>
         </div>
+
     </div>
 </x-app-layout>

@@ -12,6 +12,15 @@ class RolesPermission extends Model
     protected $table = "permissions_to_roles";
     protected $primaryKey = 'id';
 
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'laravel_through_key'
+    ];
+
     public function role()
     {
         return $this->belongsTo(Roles::class);

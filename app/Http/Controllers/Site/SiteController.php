@@ -5,12 +5,16 @@ namespace App\Http\Controllers\Site;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Site\UpdateMainContentRequest;
 use App\Http\Requests\Site\UpdateSiteLogoRequest;
+use App\Models\Adm\Permissions;
+use App\Models\Adm\RoleUser;
 use App\Models\Site\Carousel;
 use App\Models\Site\ExternalLinks;
 use App\Models\Site\Footer;
 use App\Models\Site\MainContent;
 use App\Models\Site\MidiasSociais;
 use App\Models\Site\SiteHead;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 /**
