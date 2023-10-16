@@ -5,9 +5,11 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 
 use App\Models\Adm\Permissions;
+use App\Models\Adm\Roles;
 use App\Models\Adm\RolesPermission;
-use App\Models\Adm\RoleUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -16,7 +18,10 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-    protected $with = ['roleUser', 'userPermissions'];
+    protected $table = 'users';
+    protected $primaryKey = 'id';
+
+    protected $with = ['role', 'permissions'];
 
     /**
      * The attributes that are mass assignable.
@@ -27,6 +32,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role_id'
     ];
 
     /**
@@ -47,22 +53,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+        'laravel_through_key'
     ];
 
-    public function roleUser()
+    public function role(): HasOne
     {
-        return $this->hasOne(RoleUser::class, 'user_id', 'id');
+        return $this->hasOne(Roles::class, 'id', 'role_id');
     }
 
-    public function userPermissions()
+    public function permissions(): HasManyThrough
     {
         return $this->hasManyThrough(
             Permissions::class,
             RolesPermission::class,
+            'role_id',
+            'id',
+            'role_id',
             'permission_id',
-            'id',
-            'id',
-            'role_id'
         );
     }
 }

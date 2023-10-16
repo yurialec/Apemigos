@@ -14,12 +14,15 @@
             @endforeach
             @endif
 
+            @can('create_permission')
             <div class="flex justify-end" style="margin-top: 20px;">
                 <a style="margin-right:40px; margin-bottom:20px;" href="{{route('adm.CreatePermission')}}" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold px-4 border border-gray-400 rounded shadow">
                     Novo
                 </a>
             </div>
+            @endcan
 
+            @can('list_permissions')
             @if (empty($permissions->items()))
             <div class="flex flex-col justify-center items-center">
                 <p style="margin-top: 25px;" class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight" style="margin-left: 10px;">
@@ -59,13 +62,19 @@
                                 {{$permission->description}}
                             </td>
                             <td class="px-6 py-4">
+                                @can('show_permission')
                                 <a class="dark:hover:text-white" href="{{route('adm.ShowPermission', $permission->id)}}">Visualizar</a>
+                                @endcan
+                                @can('update_permission')
                                 <a class="dark:hover:text-white" href="{{route('adm.EditPermission', $permission->id)}}">Editar</a>
+                                @endcan
+                                @can('delete_permission')
                                 <form action="{{route('adm.DeletePermission', $permission->id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="dark:hover:text-white">Excluir</button>
                                 </form>
+                                @endcan
                             </td>
                         </tr>
                         @endforeach
@@ -77,6 +86,7 @@
                     </p>
                 </div>
             </div>
+            @endcan
             @endif
         </main>
     </div>

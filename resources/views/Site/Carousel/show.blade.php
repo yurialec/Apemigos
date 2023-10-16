@@ -9,10 +9,13 @@
     @endforeach
     @endif
     <div class="flex justify-end" style="margin-top: 20px;">
+        @can('update_carousel')
         <a style="margin-right:40px; margin-bottom:20px;" href="{{route('site.EditCarousel', $carousel->id)}}" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold px-4 border border-gray-400 rounded shadow">
             Editar
         </a>
+        @endcan
     </div>
+    @can('show_carousel')
     <div class="flex flex-col justify-center items-center">
         <div style="width: 600px;" style="margin-top: 40px; margin-bottom: 25px;">
             <h1 class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight">
@@ -28,4 +31,5 @@
             <p style="margin-top: 40px; margin-bottom: 25px;" class="dark:text-gray-200 leading-tight"><strong>Data de Edição:</strong> {{$carousel->updated_at ?? '---'}}</p>
         </div>
     </div>
+    @endcan
 </x-app-layout>

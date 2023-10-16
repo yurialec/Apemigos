@@ -23,7 +23,19 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::before(function (User $user, $permission) {
-            dump($user);
+
+            if ($user->permissions->isNotEmpty()) {
+
+                foreach ($user->permissions as $permissions) {
+                    $userPermission[] = $permissions->name;
+                }
+
+                if ($user->role->name == "desenvolvedor" || in_array($permission, $userPermission)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
         });
     }
 }

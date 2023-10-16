@@ -2,8 +2,10 @@
 
 namespace App\Models\Adm;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Roles extends Model
 {
@@ -17,22 +19,13 @@ class Roles extends Model
         'description',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'laravel_through_key'
-    ];
-
-    public function permissionRole()
+    public function users(): HasMany
     {
-        return $this->hasOne(RolesPermission::class);
+        return $this->hasMany(User::class, 'id', 'user_id');
     }
 
-    public function roleUser()
+    public function rolesPermission()
     {
-        return $this->hasOne(RoleUser::class, 'user_id', 'id');
+        return $this->hasMany(RolesPermission::class);
     }
 }

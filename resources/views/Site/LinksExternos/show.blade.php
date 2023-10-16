@@ -9,9 +9,11 @@
     @endforeach
     @endif
     <div class="flex justify-end" style="margin-top: 20px;">
+    @can('update_link_externo')
         <a style="margin-right:40px; margin-bottom:20px;" href="{{route('site.EditLink', $link->id)}}" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold px-4 border border-gray-400 rounded shadow">
             Editar
         </a>
+    @endcan
     </div>
     <div class="flex flex-col justify-center items-center">
         <div style="margin-top: 40px; margin-bottom: 25px;">

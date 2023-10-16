@@ -14,13 +14,15 @@
             @endforeach
             @endif
 
+            @can('create_role')
             <div class="flex justify-end" style="margin-top: 20px;">
                 <a style="margin-right:40px; margin-bottom:20px;" href="{{route('adm.CreateRole')}}" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold px-4 border border-gray-400 rounded shadow">
                     Novo
                 </a>
             </div>
-
-            @if (empty($roles))
+            @endcan
+            @can('list_roles')
+            @if ($roles->isEmpty())
             <div class="flex flex-col justify-center items-center">
                 <p style="margin-top: 25px;" class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight" style="margin-left: 10px;">
                     Nenhum Registro encontrado
@@ -59,14 +61,22 @@
                                 {{$role->description}}
                             </td>
                             <td class="px-6 py-4">
+                                @can('role_permissions')
                                 <a class="dark:hover:text-white" href="{{route('adm.IndexRolePermissions', $role->id)}}">Permissões</a>
+                                @endcan
+                                @can('show_role')
                                 <a class="dark:hover:text-white" href="{{route('adm.ShowRole', $role->id)}}">Visualizar</a>
+                                @endcan
+                                @can('update_role')
                                 <a class="dark:hover:text-white" href="{{route('adm.EditRole', $role->id)}}">Editar</a>
+                                @endcan
+                                @can('delete_role')
                                 <form action="{{route('adm.DeleteRole', $role->id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="dark:hover:text-white">Excluir</button>
                                 </form>
+                                @endcan
                             </td>
                         </tr>
                         @endforeach
@@ -74,6 +84,7 @@
                 </table>
             </div>
             @endif
+            @endcan
         </main>
     </div>
 </x-app-layout>

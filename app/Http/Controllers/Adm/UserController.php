@@ -14,9 +14,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $result = new User();
-        $users = $result->paginate();
-
+        $users = User::paginate();
         return view('Adm.Users.index', compact('users'));
     }
 
@@ -28,54 +26,28 @@ class UserController extends Controller
     public function store(StoreUserRequest $request)
     {
         $data = $request->all();
+        $data['role_id'] = 4;
 
-        try {
-            DB::beginTransaction();
-
-            $user = new User;
-            $user->create($data);
-
-            $lastUser = User::orderBy('id', 'DESC')->first();
-
-            DB::table('user_to_role')->insert([
-                'user_id' => $lastUser->id,
-                'role_id' => 3,
-            ]);
-
-            DB::commit();
-
+        if (User::create($data)) {
             return redirect()->route('dashboard')
                 ->with('message', 'Usuário cadastrado com sucesso');
-        } catch (Exception $e) {
-            DB::rollback();
-            // throw new Exception($e);
+        } else {
             return redirect()->route('dashboard')
-                ->wiwithErrorsth('message', 'Erro ao criar usuário');
+                ->wiwithErrorsth('message', 'Erro ao cadastrar usuário');
         }
     }
 
     public function show($id)
     {
-        $user = DB::table('users')
-            ->join('user_to_role', 'users.id', '=', 'user_to_role.user_id')
-            ->join('roles', 'roles.id', '=', 'user_to_role.role_id')
-            ->select('users.*', 'roles.id AS role_id', 'roles.name AS role_name', 'roles.description AS role_description')
-            ->where('users.id', '=', $id)
-            ->first();
-
+        $user = User::where('id', $id)->first();
         return view('Adm.Users.show', compact('user'));
     }
 
     public function edit($id)
     {
-        $user = DB::table('users')
-            ->join('user_to_role', 'users.id', '=', 'user_to_role.user_id')
-            ->join('roles', 'roles.id', '=', 'user_to_role.role_id')
-            ->select('users.*', 'roles.id AS role_id', 'roles.name AS role_name', 'roles.description AS role_description')
-            ->where('users.id', '=', $id)
-            ->first();
-
+        $user = User::where('id', $id)->first();
         $roles = Roles::all();
+
         return view('Adm.Users.edit', compact('user', 'roles'));
     }
 
@@ -83,25 +55,12 @@ class UserController extends Controller
     {
         $data = $request->all();
 
-        try {
-            DB::beginTransaction();
+        $user = User::where('id', $data['id'])->first();
 
-            $user = new User;
-            $user->update($data);
-
-            DB::table('user_to_role')->select("*")->where([
-                'user_id' => $data['id']
-            ])->update([
-                'role_id' => $data['role']
-            ]);
-
-            DB::commit();
-
+        if ($user->update($data)) {
             return redirect()->route('dashboard')
-                ->with('message', 'Usuário atualizado com sucesso');
-        } catch (Exception $e) {
-            DB::rollback();
-            // throw new Exception($e);
+                ->with('message', 'Usuário atualizada com sucesso');
+        } else {
             return redirect()->route('dashboard')
                 ->wiwithErrorsth('message', 'Erro ao atualizar usuário');
         }
@@ -109,22 +68,12 @@ class UserController extends Controller
 
     public function delete($id)
     {
-        try {
-            DB::beginTransaction();
+        $user = User::where('id', $id)->first();
 
-            User::find($id)->delete();
-
-            DB::table('user_to_role')->select("*")->where([
-                'user_id' => $id
-            ])->delete();
-
-            DB::commit();
-
+        if ($user->delete()) {
             return redirect()->route('dashboard')
                 ->with('message', 'Usuário excluido com sucesso');
-        } catch (Exception $e) {
-            DB::rollback();
-            // throw new Exception($e);
+        } else {
             return redirect()->route('dashboard')
                 ->wiwithErrorsth('message', 'Erro ao excluir usuário');
         }

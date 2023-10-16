@@ -8,12 +8,13 @@
     </div>
     @endforeach
     @endif
-
+    @can('create_carousel')
     <div class="flex justify-end" style="margin-top: 20px;">
         <a style="margin-right:40px; margin-bottom:20px;" href="{{route('site.CreateCarousel')}}" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold px-4 border border-gray-400 rounded shadow">
             Novo
         </a>
     </div>
+    @endcan
 
     @if (empty($carousels))
     <div class="flex flex-col justify-center items-center">
@@ -22,6 +23,7 @@
         </p>
     </div>
     @else
+    @can('list_caroulsels')
     <div class="relative overflow-x-auto flex flex-col justify-center items-center">
         <table class="w-600 text-sm text-left text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -72,18 +74,25 @@
                         {{substr($carousel->url_link_externo, 0,30) ?? '---'}}
                     </td>
                     <td class="px-6 py-4">
+                        @can('show_carousel')
                         <a class="dark:hover:text-white" href="{{route('site.ShowCarousel', $carousel->id)}}">Visualizar</a>
+                        @endcan
+                        @can('update_carousel')
                         <a class="dark:hover:text-white" href="{{route('site.EditCarousel', $carousel->id)}}">Editar</a>
+                        @endcan
+                        @can('delete_carousel')
                         <form action="{{route('site.DeleteCarousel', $carousel->id)}}" method="POST">
                             @csrf
                             @method('DELETE')
                             <button class="dark:hover:text-white">Excluir</button>
                         </form>
+                        @endcan
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     </div>
+    @endcan
     @endif
 </x-app-layout>

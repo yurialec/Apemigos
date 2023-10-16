@@ -14,12 +14,15 @@
             @endforeach
             @endif
 
+            @can('create_user')
             <div class="flex justify-end" style="margin-top: 20px;">
                 <a style="margin-right:40px; margin-bottom:20px;" href="{{route('adm.CreateUser')}}" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold px-4 border border-gray-400 rounded shadow">
                     Novo
                 </a>
             </div>
-
+            @endcan
+            
+            @can('list_users')
             @if (empty($users))
             <div class="flex flex-col justify-center items-center">
                 <p style="margin-top: 25px;" class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight" style="margin-left: 10px;">
@@ -59,13 +62,19 @@
                                 {{$user->email}}
                             </th>
                             <td class="px-6 py-4">
+                                @can('show_user')
                                 <a class="dark:hover:text-white" href="{{route('adm.ShowUser', $user->id)}}">Visualizar</a>
+                                @endcan
+                                @can('update_user')
                                 <a class="dark:hover:text-white" href="{{route('adm.EditUser', $user->id)}}">Editar</a>
+                                @endcan
+                                @can('delete_user')
                                 <form action="{{route('adm.DeleteUser', $user->id)}}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="dark:hover:text-white">Excluir</button>
                                 </form>
+                                @endcan
                             </td>
                         </tr>
                         @endforeach
@@ -73,6 +82,7 @@
                 </table>
             </div>
             @endif
+            @endcan
         </main>
     </div>
 </x-app-layout>

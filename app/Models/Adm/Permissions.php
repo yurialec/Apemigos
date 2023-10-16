@@ -17,16 +17,11 @@ class Permissions extends Model
         'description'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'laravel_through_key'
     ];
 
-    public function permissionRole()
+    public function rolesPermission()
     {
         return $this->hasMany(RolesPermission::class);
     }

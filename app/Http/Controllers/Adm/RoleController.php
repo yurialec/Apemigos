@@ -6,14 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Adm\StoreRoleRequest;
 use App\Http\Requests\Adm\UpdateRoleRequest;
 use App\Models\Adm\Roles;
+use Illuminate\Support\Facades\Gate;
 
 class RoleController extends Controller
 {
     public function index()
     {
-        $result = new Roles;
-        $roles = $result->paginate();
-
+        $roles = Roles::paginate();
         return view('Adm.Roles.index', compact('roles'));
     }
 
