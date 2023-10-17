@@ -5,6 +5,7 @@ use App\Http\Controllers\Adm\PermissionController;
 use App\Http\Controllers\Adm\RoleController;
 use App\Http\Controllers\Adm\RolePermissionController;
 use App\Http\Controllers\Adm\UserController;
+use App\Http\Controllers\Blog\BlogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Site\CarouselController;
 use App\Http\Controllers\Site\FooterController;
@@ -30,11 +31,13 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+//Autenticacao
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    //Administrativo
     Route::group(['prefix' => '/adm'], function () {
         Route::get('/', [AdmController::class, 'index'])->name('adm.index');
 
@@ -73,6 +76,7 @@ Route::middleware('auth')->group(function () {
         });
     });
 
+    //Site config
     Route::group(['prefix' => '/site-config'], function () {
         Route::group(['prefix' => '/header'], function () {
             Route::get('/logo', [SiteController::class, 'logo'])->name('site.logo');
@@ -119,6 +123,14 @@ Route::middleware('auth')->group(function () {
             Route::put('/update', [MidiasSociaisController::class, 'update'])->name('site.UpdateMidiasSociais')->middleware('can: update_sicial_media');
             Route::delete('/delete/{id}', [MidiasSociaisController::class, 'delete'])->name('site.DeleteMidiasSociais')->middleware('can: delete_sicial_media');
         });
+    });
+
+    //Blog
+    Route::group(['prefix' => '/blog'], function () {
+        Route::get('/index', [BlogController::class, 'index'])->name('blog.index');
+        Route::get('/create', [BlogController::class, 'create'])->name('create');
+        Route::post('/store', [BlogController::class, 'store'])->name('StoreBlog');
+        Route::get('/show/{id}', [BlogController::class, 'show'])->name('ShowBlog');
     });
 });
 

@@ -7,6 +7,7 @@ namespace App\Models;
 use App\Models\Adm\Permissions;
 use App\Models\Adm\Roles;
 use App\Models\Adm\RolesPermission;
+use App\Models\Blog\BlogUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Relations\HasOne;
@@ -21,7 +22,7 @@ class User extends Authenticatable
     protected $table = 'users';
     protected $primaryKey = 'id';
 
-    protected $with = ['role', 'permissions'];
+    protected $with = ['role', 'permissions', 'blogUser'];
 
     /**
      * The attributes that are mass assignable.
@@ -71,5 +72,10 @@ class User extends Authenticatable
             'role_id',
             'permission_id',
         );
+    }
+
+    public function blogUser()
+    {
+        return $this->hasMany(BlogUser::class);
     }
 }

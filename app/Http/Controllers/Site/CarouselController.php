@@ -6,11 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Site\StoreCarouselRequest;
 use App\Http\Requests\Site\UpdateCarouselRequest;
 use App\Models\Site\Carousel;
-use Exception;
-use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Storage;
 
 class CarouselController extends Controller
 {

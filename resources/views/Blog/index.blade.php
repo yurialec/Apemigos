@@ -9,22 +9,20 @@
         </div>
         @endforeach
         @endif
-        @can('create_carousel')
+
         <div class="flex justify-end" style="margin-top: 20px;">
-            <a style="margin-right:40px; margin-bottom:20px;" href="{{route('site.CreateCarousel')}}" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold px-4 border border-gray-400 rounded shadow">
+            <a style="margin-right:40px; margin-bottom:20px;" href="{{route('create')}}" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold px-4 border border-gray-400 rounded shadow">
                 Novo
             </a>
         </div>
-        @endcan
 
-        @if (empty($carousels))
+        @if ($blogs->isEmpty())
         <div class="flex flex-col justify-center items-center">
             <p style="margin-top: 25px;" class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight" style="margin-left: 10px;">
                 Nenhum Registro encontrado
             </p>
         </div>
         @else
-        @can('list_caroulsels')
         <div class="relative overflow-x-auto flex flex-col justify-center items-center">
             <table class="w-600 text-sm text-left text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -36,16 +34,10 @@
                             Título
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Data do Evento
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Descrição
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Imagem
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Nome link externo
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Link externo
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Ações
@@ -53,48 +45,35 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($carousels as $carousel)
-
+                    @foreach ($blogs as $blog)
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                         <td class="px-6 py-4">
-                            {{$carousel->id}}
+                            {{$blog->id}}
                         </td>
                         <th scope="row" class="px-6 py-4">
-                            {{$carousel->titulo}}
+                            {{$blog->titulo}}
+                        </th>
+                        <th scope="row" class="px-6 py-4">
+                            {{$blog->data_evento}}
+                        </th>
+                        <th scope="row" class="px-6 py-4">
+                            {{$blog->texto}}
                         </th>
                         <td class="px-6 py-4">
-                            {{substr($carousel->descricao, 0,30)}}
-                        </td>
-                        <td class="px-6 py-4">
-                            <img src="{{ URL::to("/carousel/{$carousel->imagem}") }}" alt="{{ $carousel->titulo }}" width="250px">
-                        </td>
-                        <td class="px-6 py-4">
-                            {{$carousel->nome_link_externo ?? '---'}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{substr($carousel->url_link_externo, 0,30) ?? '---'}}
-                        </td>
-                        <td class="px-6 py-4">
-                            @can('show_carousel')
-                            <a class="dark:hover:text-white" href="{{route('site.ShowCarousel', $carousel->id)}}">Visualizar</a>
-                            @endcan
-                            @can('update_carousel')
-                            <a class="dark:hover:text-white" href="{{route('site.EditCarousel', $carousel->id)}}">Editar</a>
-                            @endcan
-                            @can('delete_carousel')
-                            <form action="{{route('site.DeleteCarousel', $carousel->id)}}" method="POST">
+                            <a class="dark:hover:text-white" href="{{route('ShowBlog', $blog->id)}}">Visualizar</a>
+                            <a class="dark:hover:text-white" href="#">Editar</a>
+                            <form action="#" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button class="dark:hover:text-white">Excluir</button>
                             </form>
-                            @endcan
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
-        @endcan
         @endif
+
     </div>
 </x-app-layout>
