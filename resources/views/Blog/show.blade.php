@@ -16,11 +16,15 @@
             </p>
         </div>
         @else
+        @can('update_blog')
         <div class="flex justify-end" style="margin-top: 20px;">
-            <a style="margin-right:40px; margin-bottom:20px;" href="#" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold px-4 border border-gray-400 rounded shadow">
+            <a style="margin-right:40px; margin-bottom:20px;" href="{{route('EditBlog', $blog->id)}}" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold px-4 border border-gray-400 rounded shadow">
                 Editar
             </a>
         </div>
+        @endcan
+
+        @can('show_blog')
         <div class="flex flex-col justify-center items-center">
             <div style="width: 600px;" style="margin-top: 40px; margin-bottom: 25px;">
                 <h1 class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight">
@@ -41,15 +45,22 @@
                     </div>
                     <div style="margin-top: 10px;">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Fotos</label>
+                        @if (is_string($fotos))
+                        <p style="margin-top: 10px;">
+                            <img src="{{ URL::to("/blog/$user->id/$slugTitulo/$fotos") }}" alt="{{$blog->titulo}}">
+                        </p>
+                        @else
                         @foreach ($fotos as $foto)
                         <p style="margin-top: 10px;">
                             <img src="{{ URL::to("/blog/$user->id/$slugTitulo/$foto->name") }}" alt="{{$blog->titulo}}">
                         </p>
                         @endforeach
+                        @endif
                     </div>
                 </div>
             </div>
         </div>
+        @endcan
         @endif
     </div>
 </x-app-layout>

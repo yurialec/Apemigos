@@ -32,7 +32,7 @@ class RoleController extends Controller
                 ->with('message', 'Papel criado com sucesso');
         } else {
             return redirect()->route('dashboard')
-                ->wiwithErrorsth('message', 'Erro ao criar papel');
+                ->withErrors('message', 'Erro ao criar papel');
         }
     }
 
@@ -61,7 +61,7 @@ class RoleController extends Controller
                 ->with('message', 'Papel atualizado com sucesso');
         } else {
             return redirect()->route('dashboard')
-                ->wiwithErrorsth('message', 'Erro ao atualizado papel');
+                ->withErrors('message', 'Erro ao atualizado papel');
         }
     }
 
@@ -75,7 +75,7 @@ class RoleController extends Controller
                 ->with('message', 'Papel excluido com sucesso');
         } else {
             return redirect()->route('dashboard')
-                ->wiwithErrorsth('message', 'Erro ao excluir papel');
+                ->withErrors('message', 'Erro ao excluir papel');
         }
     }
 }

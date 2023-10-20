@@ -36,7 +36,7 @@ class MidiasSociaisController extends Controller
                 ->with('message', 'Midias Cadastradas com sucesso');
         } else {
             return redirect()->route('dashboard')
-                ->wiwithErrorsth('message', 'Erro ao cadastrar midias');
+                ->withErrors('message', 'Erro ao cadastrar midias');
         }
     }
 
@@ -68,7 +68,7 @@ class MidiasSociaisController extends Controller
                 ->with('message', 'Mídia atualizada com sucesso');
         } else {
             return redirect()->route('dashboard')
-                ->wiwithErrorsth('message', 'Erro ao atualizar mídia');
+                ->withErrors('message', 'Erro ao atualizar mídia');
         }
     }
 
@@ -82,7 +82,7 @@ class MidiasSociaisController extends Controller
                 ->with('message', 'Mídia excluída com sucesso');
         } else {
             return redirect()->route('dashboard')
-                ->wiwithErrorsth('message', 'Erro ao excluir mídia');
+                ->withErrors('message', 'Erro ao excluir mídia');
         }
     }
 }

@@ -33,7 +33,7 @@ class UserController extends Controller
                 ->with('message', 'Usuário cadastrado com sucesso');
         } else {
             return redirect()->route('dashboard')
-                ->wiwithErrorsth('message', 'Erro ao cadastrar usuário');
+                ->withErrors('message', 'Erro ao cadastrar usuário');
         }
     }
 
@@ -62,7 +62,7 @@ class UserController extends Controller
                 ->with('message', 'Usuário atualizada com sucesso');
         } else {
             return redirect()->route('dashboard')
-                ->wiwithErrorsth('message', 'Erro ao atualizar usuário');
+                ->withErrors('message', 'Erro ao atualizar usuário');
         }
     }
 
@@ -75,7 +75,7 @@ class UserController extends Controller
                 ->with('message', 'Usuário excluido com sucesso');
         } else {
             return redirect()->route('dashboard')
-                ->wiwithErrorsth('message', 'Erro ao excluir usuário');
+                ->withErrors('message', 'Erro ao excluir usuário');
         }
     }
 }

@@ -34,7 +34,7 @@ class LinksExternosController extends Controller
                 ->with('message', 'Link cadastrado com sucesso');
         } else {
             return redirect()->route('dashboard')
-                ->wiwithErrorsth('message', 'Erro ao cadastrar novo link');
+                ->withErrors('message', 'Erro ao cadastrar novo link');
         }
     }
 
@@ -64,7 +64,7 @@ class LinksExternosController extends Controller
                 ->with('message', 'Link atualizado com sucesso');
         } else {
             return redirect()->route('dashboard')
-                ->wiwithErrorsth('message', 'Erro ao atualizar link');
+                ->withErrors('message', 'Erro ao atualizar link');
         }
     }
 
@@ -75,7 +75,7 @@ class LinksExternosController extends Controller
                 ->with('message', 'Link excluido com sucesso');
         } else {
             return redirect()->route('dashboard')
-                ->wiwithErrorsth('message', 'Erro ao excluir link');
+                ->withErrors('message', 'Erro ao excluir link');
         }
     }
 }

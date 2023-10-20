@@ -131,6 +131,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/create', [BlogController::class, 'create'])->name('create');
         Route::post('/store', [BlogController::class, 'store'])->name('StoreBlog');
         Route::get('/show/{id}', [BlogController::class, 'show'])->name('ShowBlog');
+        Route::get('/edit/{id}', [BlogController::class, 'edit'])->name('EditBlog');
+        Route::put('/update', [BlogController::class, 'update'])->name('UpdateBlog');
+        Route::delete('/delete/{id}', [BlogController::class, 'delete'])->name('DeleteBlog');
     });
 });
 

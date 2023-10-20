@@ -37,7 +37,7 @@ class FooterController extends Controller
                 ->with('message', 'Dados atualizados com sucesso');
         } else {
             return redirect()->route('dashboard')
-                ->wiwithErrorsth('message', 'Erro ao atualizar os dados');
+                ->withErrors('message', 'Erro ao atualizar os dados');
         }
     }
 
@@ -61,7 +61,7 @@ class FooterController extends Controller
                 ->with('message', 'Dados atualizados com sucesso');
         } else {
             return redirect()->route('dashboard')
-                ->wiwithErrorsth('message', 'Erro ao atualizar os dados');
+                ->withErrors('message', 'Erro ao atualizar os dados');
         }
     }
 }

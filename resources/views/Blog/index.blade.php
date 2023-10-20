@@ -10,12 +10,14 @@
         @endforeach
         @endif
 
+        @can('add_blog')
         <div class="flex justify-end" style="margin-top: 20px;">
             <a style="margin-right:40px; margin-bottom:20px;" href="{{route('create')}}" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold px-4 border border-gray-400 rounded shadow">
                 Novo
             </a>
         </div>
-
+        @endcan
+        @can('list_users')
         @if ($blogs->isEmpty())
         <div class="flex flex-col justify-center items-center">
             <p style="margin-top: 25px;" class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight" style="margin-left: 10px;">
@@ -60,13 +62,22 @@
                             {{$blog->texto}}
                         </th>
                         <td class="px-6 py-4">
+                            @can('show_blog')
                             <a class="dark:hover:text-white" href="{{route('ShowBlog', $blog->id)}}">Visualizar</a>
-                            <a class="dark:hover:text-white" href="#">Editar</a>
-                            <form action="#" method="POST">
+                            @endcan
+
+                            @if ($blog->blogUser[0]->id == Auth::user()->id)
+                            @can('update_blog')
+                            <a class="dark:hover:text-white" href="{{route('EditBlog', $blog->id)}}">Editar</a>
+                            @endcan
+                            @can('delete_blog')
+                            <form action="{{route('DeleteBlog', $blog->id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')
                                 <button class="dark:hover:text-white">Excluir</button>
                             </form>
+                            @endcan
+                            @endif
                         </td>
                     </tr>
                     @endforeach
@@ -74,6 +85,7 @@
             </table>
         </div>
         @endif
+        @endcan
 
     </div>
 </x-app-layout>

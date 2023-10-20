@@ -32,7 +32,7 @@ class PermissionController extends Controller
                 ->with('message', 'Permissão criada com sucesso');
         } else {
             return redirect()->route('dashboard')
-                ->wiwithErrorsth('message', 'Erro ao criar permissão');
+                ->withErrors('message', 'Erro ao criar permissão');
         }
     }
 
@@ -64,7 +64,7 @@ class PermissionController extends Controller
                 ->with('message', 'Permissão atualizada com sucesso');
         } else {
             return redirect()->route('dashboard')
-                ->wiwithErrorsth('message', 'Erro ao atualizar permissão');
+                ->withErrors('message', 'Erro ao atualizar permissão');
         }
     }
 
@@ -78,7 +78,7 @@ class PermissionController extends Controller
                 ->with('message', 'Permissão excluida com sucesso');
         } else {
             return redirect()->route('dashboard')
-                ->wiwithErrorsth('message', 'Erro ao excluir permissão');
+                ->withErrors('message', 'Erro ao excluir permissão');
         }
     }
 }

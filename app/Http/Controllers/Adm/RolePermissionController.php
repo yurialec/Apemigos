@@ -84,7 +84,7 @@ class RolePermissionController extends Controller
             DB::rollback();
             dd($err)->getMessage();
             return redirect()->route('dashboard')
-                ->wiwithErrorsth('message', 'Erro ao atualizar permissões do nível de acesso');
+                ->withErrors('message', 'Erro ao atualizar permissões do nível de acesso');
         }
     }
 }
