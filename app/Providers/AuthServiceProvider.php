@@ -23,14 +23,14 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::before(function (User $user, $permission) {
-
-            if ($user->permissions->isNotEmpty()) {
+            
+            if ($user->role->id === 1 || $user->permissions->isNotEmpty()) {
 
                 foreach ($user->permissions as $permissions) {
                     $userPermission[] = $permissions->name;
                 }
 
-                if ($user->role->name == "desenvolvedor" || in_array($permission, $userPermission)) {
+                if ($user->role->id === 1 or in_array($permission, $userPermission)) {
                     return true;
                 } else {
                     return false;

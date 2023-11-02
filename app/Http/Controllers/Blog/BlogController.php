@@ -206,7 +206,7 @@ class BlogController extends Controller
 
         if (Auth::user()->id !== $user->id) {
             return redirect()->route('dashboard')
-                ->withErrors('message', 'Você não tem permissão para excluir este registro');
+                ->with('message', 'Você não tem permissão para excluir este registro');
         } else {
             $dir = public_path("blog\\" . $user->id . "\\" . Str::of($blog->titulo)->slug('-'));
 

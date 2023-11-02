@@ -9,14 +9,14 @@
         </div>
         @endforeach
         @endif
-        @can('create_sicial_media')
+        @can('create_social_media')
         <div class="flex justify-end" style="margin-top: 20px;">
             <a style="margin-right:40px; margin-bottom:20px;" href="{{route('site.CreateMidiasSociais')}}" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold px-6 border border-gray-400 rounded shadow">
                 Novo
             </a>
         </div>
         @endcan
-        @can('list_sicial_media')
+        @can('list_social_media')
         @if (empty($midias))
         <div class="flex flex-col justify-center items-center">
             <p style="margin-top: 25px;" class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight" style="margin-left: 10px;">
@@ -56,19 +56,19 @@
                             {{$midia->nome}}
                         </td>
                         <td class="px-6 py-4">
-                            <p class="{{$midia->icone}}"></p>
+                            <p><i class="{{$midia->icone}}"></i></p>
                         </td>
                         <td class="px-6 py-4">
                             <a class="hover:bg-sky-700" href="{{$midia->url}}" target="_blank">{{substr($midia->url, 0,30)}}</a>
                         </td>
                         <td class="px-6 py-4">
-                            @can('show_sicial_media')
+                            @can('show_social_media')
                             <a class="dark:hover:text-white" href="{{route('site.ShowMidiasSociais', $midia->id)}}">Visualizar</a>
                             @endcan
-                            @can('update_sicial_media')
+                            @can('update_social_media')
                             <a class="dark:hover:text-white" href="{{route('site.EditMidiasSociais', $midia->id)}}">Editar</a>
                             @endcan
-                            @can('delete_sicial_media')
+                            @can('delete_social_media')
                             <form action="{{route('site.DeleteMidiasSociais', $midia->id)}}" method="POST">
                                 @csrf
                                 @method('DELETE')

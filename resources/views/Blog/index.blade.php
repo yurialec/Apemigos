@@ -10,14 +10,14 @@
         @endforeach
         @endif
 
-        @can('add_blog')
+        @can('create_blog')
         <div class="flex justify-end" style="margin-top: 20px;">
             <a style="margin-right:40px; margin-bottom:20px;" href="{{route('create')}}" class="bg-white hover:bg-gray-100 text-gray-800 font-semibold px-4 border border-gray-400 rounded shadow">
                 Novo
             </a>
         </div>
         @endcan
-        @can('list_users')
+        @can('list_blogs')
         @if ($blogs->isEmpty())
         <div class="flex flex-col justify-center items-center">
             <p style="margin-top: 25px;" class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight" style="margin-left: 10px;">
@@ -66,7 +66,6 @@
                             <a class="dark:hover:text-white" href="{{route('ShowBlog', $blog->id)}}">Visualizar</a>
                             @endcan
 
-                            @if ($blog->blogUser[0]->id == Auth::user()->id)
                             @can('update_blog')
                             <a class="dark:hover:text-white" href="{{route('EditBlog', $blog->id)}}">Editar</a>
                             @endcan
@@ -77,7 +76,6 @@
                                 <button class="dark:hover:text-white">Excluir</button>
                             </form>
                             @endcan
-                            @endif
                         </td>
                     </tr>
                     @endforeach

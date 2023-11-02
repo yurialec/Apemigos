@@ -8,6 +8,7 @@ use App\Http\Requests\Adm\UpdateUserRequest;
 use App\Models\Adm\Roles;
 use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -45,8 +46,10 @@ class UserController extends Controller
 
     public function edit($id)
     {
+        $userLogged = Auth::user();
+
         $user = User::where('id', $id)->first();
-        $roles = Roles::all();
+        $roles = Roles::where('id', '>', $userLogged->role_id)->get();
 
         return view('Adm.Users.edit', compact('user', 'roles'));
     }

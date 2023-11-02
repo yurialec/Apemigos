@@ -20,7 +20,7 @@
                 <h1 class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight">
                     Detalhes da Mídia
                 </h1>
-                @can('update_sicial_media')
+                @can('update_social_media')
                 @if (empty($midia))
                 <p class="font-semibold text-md text-gray-800 dark:text-gray-200 leading-tight" style="margin-left: 10px;">
                     Nenhum registro encontrado

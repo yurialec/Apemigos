@@ -15,6 +15,7 @@
 
     <body class="antialiased dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
             <!-- Logotipo -->
             <div style="margin-left: 25px; margin-top: 25px;" class="relative flex justify-left bg-dots-darker bg-center bg-gray-100 dark:bg-gray-900">
                 @if (!empty($logo))
@@ -27,18 +28,18 @@
             </div>
 
             <!-- Titulo -->
-            @if (!empty($content))
-            <div class="flex justify-center" style="margin-top: 100px; margin-bottom: 10px;">
-                <h2 style="font-size: 25px;" class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">{{$content->titulo}}</h2>
+            <div style="margin-top: 100px; margin-bottom: 10px;">
+                @if (!empty($content))
+
+                <h2 style="font-size: 25px;" class="flex justify-center font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">{{$content->titulo}}</h2>
+                <p class="flex justify-center font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">{{$content->descricao}}</p>
+
+                @else
+                <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                    Nenhum Título cadastrado
+                </p>
+                @endif
             </div>
-            <div class="flex justify-center">
-                <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">{{$content->descricao}}</p>
-            </div>
-            @else
-            <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                Nenhum título cadastrado
-            </p>
-            @endif
 
             <!-- Links Externos -->
             <div class="flex justify-center" style="margin-top: 100px; margin-bottom: 100px;">
@@ -95,10 +96,46 @@
             </div>
 
             <!-- BLOG -->
-            <div class="flex justify-center" style="margin-top: 100px; margin-bottom: 100px;">
+            <div class="flex justify-center" style="margin-top: 100px; margin-bottom: 100px; margin-left: 100px; margin-right: 100px;">
+                @if ($blogs->isNotEmpty())
+                <div class="mt-6 mx-60 swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        @foreach ($blogs as $blog)
+                        <div class="swiper-slide">
+                            <div>
+                                <div>
+                                    <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                                        {{$blog->titulo}}
+                                    </p>
+                                </div>
+                                <div>
+                                    <p>
+                                        <img src="{{ URL::to("/blog/$blog->blogUser[0]->id/Str::of($blog->titulo)->slug('-')/") }}" alt="{{$blog->titulo}}">
+                                    </p>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                                        {{$blog->texto}}
+                                    </p>
+                                </div>
+                                <div>
+                                    <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                                        {{$blog->data_evento}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+                @else
                 <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                    #BLOG
+                    Nenhum blog cadastrado
                 </p>
+                @endif
             </div>
 
             <!-- NEWSLETTER -->
@@ -180,9 +217,11 @@
                 </div>
             </footer>
             @else
-            <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                Nenhuma informação do rodapé cadastrada
-            </p>
+            <div style="margin-left: 25px; margin-top: 25px;" class="relative flex justify-left bg-dots-darker bg-center bg-gray-100 dark:bg-gray-900">
+                <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                    Nenhuma informação do rodapé cadastrada
+                </p>
+            </div>
             @endif
         </div>
     </body>
