@@ -6,6 +6,7 @@ use App\Models\Adm\Permissions;
 use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class PermissionsSeeder extends Seeder
 {
@@ -14,7 +15,9 @@ class PermissionsSeeder extends Seeder
      */
     public function run(): void
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Permissions::truncate();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $permissions = [
             //Permissões
