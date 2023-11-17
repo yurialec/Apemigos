@@ -97,45 +97,7 @@
 
             <!-- BLOG -->
             <div class="flex justify-center" style="margin-top: 100px; margin-bottom: 100px; margin-left: 100px; margin-right: 100px;">
-                @if ($blogs->isNotEmpty())
-                <div class="mt-6 mx-60 swiper mySwiper">
-                    <div class="swiper-wrapper">
-                        @foreach ($blogs as $blog)
-                        <div class="swiper-slide">
-                            <div>
-                                <div>
-                                    <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                                        {{$blog->titulo}}
-                                    </p>
-                                </div>
-                                <div>
-                                    <p>
-                                        <img src="{{ URL::to("/blog/$blog->blogUser[0]->id/Str::of($blog->titulo)->slug('-')/") }}" alt="{{$blog->titulo}}">
-                                    </p>
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                                        {{$blog->texto}}
-                                    </p>
-                                </div>
-                                <div>
-                                    <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                                        {{$blog->data_evento}}
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-pagination"></div>
-                </div>
-                @else
-                <p class="font-semibold text-gray-600 dark:text-gray-400 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
-                    Nenhum blog cadastrado
-                </p>
-                @endif
+                #BLOG
             </div>
 
             <!-- NEWSLETTER -->

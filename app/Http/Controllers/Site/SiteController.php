@@ -40,15 +40,7 @@ class SiteController extends Controller
         /** Redes Sociais */
         $redesSociais = MidiasSociais::all();
 
-        /** Blog */
-        $blogs = Blog::all();
-
-        $fotos = [];
-        foreach ($blogs as $blog) {
-            $fotos[] = $blog->imagem;
-        }
-
-        return view('welcome', compact('logo', 'content', 'links', 'carousels', 'footer', 'redesSociais', 'blogs'));
+        return view('welcome', compact('logo', 'content', 'links', 'carousels', 'footer', 'redesSociais'));
     }
 
     /**
